@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 require('dotenv').config();
 
@@ -8,6 +9,7 @@ const subjectRoutes = require('./routes/subjectRoutes');
 const teachingRecordRoutes = require('./routes/teachingRecordRoutes');
 const lessonPlanRoutes = require('./routes/lessonPlanRoutes');
 
+app.use(cors());
 app.use(express.json());
 
 // Routes
