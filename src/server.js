@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/teachbuddy';
 
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGO_URI,{})
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
