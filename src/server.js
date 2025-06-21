@@ -16,6 +16,10 @@ app.use('/api/subjects', subjectRoutes);
 app.use('/api/teaching-records', teachingRecordRoutes);
 app.use('/api/lesson-plans', lessonPlanRoutes);
 
+app.get('/', (req, res) => {
+  res.send('Teach Buddy backend server is running!');
+});
+
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/teachbuddy';
 
