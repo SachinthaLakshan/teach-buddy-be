@@ -7,6 +7,7 @@ const teachingRecordSchema = new mongoose.Schema({
   subjectId: { type: mongoose.Schema.Types.ObjectId, ref: 'Subject', required: true },
   subjectName: { type: String, required: true },
   description: { type: String, required: true },
+  grade: { type: String },
 }, { timestamps: true });
 
 module.exports = mongoose.model('TeachingRecord', teachingRecordSchema); 

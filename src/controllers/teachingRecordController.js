@@ -13,13 +13,13 @@ exports.getRecordsForUser = async (req, res) => {
 
 exports.addTeachingRecord = async (req, res) => {
   try {
-    const { userId, date, period, subjectId, description } = req.body;
+    const { userId, date, period, subjectId, description, grade } = req.body;
     if (!userId || !date || !period || !subjectId || !description) {
       return res.status(400).json({ message: 'All fields are required.' });
     }
     const subject = await Subject.findById(subjectId);
     const subjectName = subject ? subject.name : 'Unknown Subject';
-    const record = new TeachingRecord({ userId, date, period, subjectId, subjectName, description });
+    const record = new TeachingRecord({ userId, date, period, subjectId, subjectName, description, grade });
     await record.save();
     res.status(201).json(record);
   } catch (err) {
@@ -30,12 +30,13 @@ exports.addTeachingRecord = async (req, res) => {
 exports.updateTeachingRecord = async (req, res) => {
   try {
     const { id } = req.params;
-    const { date, period, subjectId, description } = req.body;
+    const { date, period, subjectId, description, grade } = req.body;
 
     const updateFields = {};
     if (date) updateFields.date = date;
     if (period) updateFields.period = period;
     if (description) updateFields.description = description;
+    if (grade) updateFields.grade = grade;
 
     if (subjectId) {
       const subject = await Subject.findById(subjectId);

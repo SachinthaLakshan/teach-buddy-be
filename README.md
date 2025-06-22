@@ -78,7 +78,7 @@ A Node.js backend server using Express, MongoDB, and Mongoose for managing users
 - **Description:** Add a new teaching record.
 - **Body:**
   ```json
-  { "userId": "string", "date": "YYYY-MM-DD", "period": number, "subjectId": "string", "description": "string" }
+  { "userId": "string", "date": "YYYY-MM-DD", "period": number, "subjectId": "string", "description": "string", "grade": "string (optional)" }
   ```
 - **Response:** Created record
 
@@ -90,7 +90,8 @@ A Node.js backend server using Express, MongoDB, and Mongoose for managing users
     "date": "YYYY-MM-DD",
     "period": number,
     "subjectId": "string",
-    "description": "string"
+    "description": "string",
+    "grade": "string"
   }
   ```
 - **Response:** Updated record
@@ -119,7 +120,7 @@ A Node.js backend server using Express, MongoDB, and Mongoose for managing users
     "objectives": ["string"],
     "activities": ["string"],
     "assessment": "string",
-    "notes": "string (optional)"
+    "grade": "string (optional)"
   }
   ```
 - **Response:** Created lesson plan
