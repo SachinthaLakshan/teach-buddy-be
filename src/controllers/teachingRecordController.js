@@ -27,6 +27,38 @@ exports.addTeachingRecord = async (req, res) => {
   }
 };
 
+exports.updateTeachingRecord = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { date, period, subjectId, description } = req.body;
+
+    const updateFields = {};
+    if (date) updateFields.date = date;
+    if (period) updateFields.period = period;
+    if (description) updateFields.description = description;
+
+    if (subjectId) {
+      const subject = await Subject.findById(subjectId);
+      if (subject) {
+        updateFields.subjectId = subjectId;
+        updateFields.subjectName = subject.name;
+      } else {
+        return res.status(400).json({ message: 'Invalid subject ID provided.' });
+      }
+    }
+
+    const record = await TeachingRecord.findByIdAndUpdate(id, updateFields, { new: true });
+
+    if (!record) {
+      return res.status(404).json({ message: 'Teaching record not found.' });
+    }
+
+    res.json(record);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
+
 exports.deleteTeachingRecord = async (req, res) => {
   try {
     const { id } = req.params;

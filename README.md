@@ -82,6 +82,19 @@ A Node.js backend server using Express, MongoDB, and Mongoose for managing users
   ```
 - **Response:** Created record
 
+#### PUT `/api/teaching-records/:id`
+- **Description:** Update a teaching record by ID.
+- **Body (provide only fields to update):**
+  ```json
+  {
+    "date": "YYYY-MM-DD",
+    "period": number,
+    "subjectId": "string",
+    "description": "string"
+  }
+  ```
+- **Response:** Updated record
+
 #### DELETE `/api/teaching-records/:id`
 - **Description:** Delete a teaching record by ID.
 - **Response:** `{ message }`
